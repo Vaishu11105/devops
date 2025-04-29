@@ -15,7 +15,7 @@ class App:
     def login_gui(self):
         self.clear_gui()
 
-        Label(self.root, text="Login now", font=("Arial", 20, "bold"), bg="#34495e", fg="#aab7b8").pack(pady=20)
+        Label(self.root, text="Login asap", font=("Arial", 20, "bold"), bg="#34495e", fg="#aab7b8").pack(pady=20)
 
         Label(self.root, text="Email:", bg="#34495e", fg="white").pack(pady=5)
         self.email_input = Entry(self.root, width=30)
