@@ -1,0 +1,40 @@
+services:
+  c1_backend:
+    build: ./container1_backend
+    image: c1_backend
+    ports:
+      - "5000:5000"
+    networks:
+      - appnet
+
+    volumes:
+      - container2_data:/app/data 
+
+  c1_frontend:
+    build: ./container1_frontend
+    image: c1_frontend
+    environment:
+      - DISPLAY=host.docker.internal:0
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+    networks:
+      - appnet
+
+  container2_backend:
+    build: ./container2_backend
+    image: container2_backend
+    ports:
+      - "5001:5000"
+    environment:
+      - DISPLAY=host.docker.internal:0
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+    networks:
+      - appnet
+
+networks:
+  appnet:
+    driver: bridge
+
+volumes:
+  container2_data:
